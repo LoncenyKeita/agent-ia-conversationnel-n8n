@@ -11,17 +11,29 @@ fonctionne avec le chat intégré de n8n. La connexion WhatsApp n'est pas finali
 # Sommaire
 
 1- Fonctionnalités
+
 2- Architecture
+
 3- Prérequis
+
 4- Contenu du dépôt
+
 5- Installation
+
 6- Configuration des services
+
 7- Base de connaissance
+
 8- Prompt de l'agent
+
 9- Tester le projet
+
 10- Limites connues
+
 11- Dépannage
+
 12- Pistes d'évolution
+
 13- Sécurité
 14- 
 
@@ -43,9 +55,11 @@ Branche 1 : indexation de la base de connaissance (à lancer une fois)
 Google Drive (fichier .txt)
         │
         ▼
+
 Download file (Google Drive)
         │
         ▼
+        
 Simple Vector Store  ── mode "Insert Documents"
    ├── Default Data Loader (+ Recursive Character Text Splitter)
    └── Embeddings OpenAI
