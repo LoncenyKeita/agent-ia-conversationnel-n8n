@@ -1,0 +1,853 @@
+{
+  "name": "Un chat msg",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "Ce déclencheur est un chat message qui permet de déclencher mes msg directeur sur l'interface.... intérraction direct",
+        "height": 80,
+        "width": 150,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        352,
+        16
+      ],
+      "typeVersion": 1,
+      "id": "14583c80-9222-4142-8547-62aac2648dd9",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "options": {
+          "systemMessage": "=Tu es l'assistant de l'agence de génération de prospects et d'activités à Bali.\n\n### 📌 Rôle et Objectifs\n- Présenter nos activités en te basant sur les prix exacts issus de la base de données.\n- Collecter les informations personnelles des prospects.\n- Informer sur les disponibilités en temps réel.\n- Aider les clients dans leur processus de réservation.\n- Fournir des conseils personnalisés et adaptés à leurs envies.\n\n### ⚙️ Processus de Réponse\n1. Utilise TOUJOURS l'outil \"base_de_connaissance\" pour rechercher les informations (activités, prix, politiques) avant de répondre.\n2. Appuie-toi UNIQUEMENT sur ces données officielles pour formuler tes réponses.\n3. Adopte un ton chaleureux, accueillant et professionnel.\n\n### 📝 Gestion des Informations Prospect\nDès qu'un client fournit ses informations personnelles (nom, email, téléphone), tu dois :\n1. Extraire ces données de la conversation.\n2. Utiliser l'outil \"gerer_clients\" en respectant strictement ce format :\n   - name: [nom du client]\n   - email: [email du client]\n   - phone: [téléphone du client]\n   - activity: [activité souhaitée]\n   - date: [date actuelle]\n\n⚠️ **Important :** Assure-toi de demander poliment ces informations (si elles manquent) avant de valider ou finaliser toute réservation.\n\n### 👋 Message d'ouverture\nCommence toujours la conversation par : \n\"Bonjour ! Quelle activité à Bali vous intéresse ?\""
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        848,
+        -16
+      ],
+      "id": "3445ea40-7035-4c6a-9e58-fdc931e7ed07",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "content": "Lui c'est mon agent IA conversationnelle déjà préconfiguré:\n1- Chat Model: qui est littéralement le cerveaux et qui être mon LLM\n2- Memory\n3- Les outils: ce sont des compétences que je vais donner à moi ia. \n\nA ce niveau, on aura 2 concepts: Input(information réçu par l'ia) et Ouput(info envoyée).\n\nEtape suivant, j'entraîne mon ia, en mettant un prompt permettant d'executer les actions que je veux",
+        "height": 96
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        720,
+        -160
+      ],
+      "typeVersion": 1,
+      "id": "075a74a1-83f2-47e2-9b5b-038b5227a6bd",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.5,
+      "position": [
+        512,
+        -16
+      ],
+      "id": "08d9b405-2dc0-4e2b-8584-0c34ecacd609",
+      "name": "Déclencheur chat",
+      "webhookId": "9088d031-33ef-4c41-ac18-98a546ebd500"
+    },
+    {
+      "parameters": {
+        "content": "Ollama3, est une ia gratuit en locale qui est le cerveaux ici et en plus mon LLM entraîné pour répondre.\nSon rôle est qu'il soit entraîné à tout ce qu'il doit faire comme action, mais son prompt doit être saisi dans l'agent ia au-dessus",
+        "height": 112,
+        "width": 150
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        272,
+        448
+      ],
+      "typeVersion": 1,
+      "id": "7ad42dcb-3667-4664-8f4b-a9b31353a806",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "Lui c'est notre mémoire, il permet de sauvegarder les conversations afin que l'ia puisse bien intérragir nous\n\nNb: elle est configurée déjà\n\nMais alors nous allons mettre une session id permettant d'identifé un utilisateur qu'avait déjà commencer une conversion",
+        "height": 112,
+        "width": 160
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        496,
+        448
+      ],
+      "typeVersion": 1,
+      "id": "cdd6c086-a631-4d23-b8ac-c2118d8faf25",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        560,
+        288
+      ],
+      "id": "c1dde1f6-7e31-442a-b78f-533341cd8f8c",
+      "name": "Mémoire de sauvegarde(Permettant à l'ia de bien interragir)"
+    },
+    {
+      "parameters": {
+        "content": "Notre déclencheur:\nDès qu'on ajoute un new doc il upload directement dans la base de connaissance\n\nLes étapes:\n1-  Aller dans Drive cloud - API et services activés - Bibliothèque- Google Drive API-cliquer sur activer-Identifiant-Créer de nouveaux identifiant-ID client OAuth-Nom de l'application-Créer un ID OAuth- Url, cliquez sur le déclencheur en haut-"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        416,
+        1232
+      ],
+      "typeVersion": 1,
+      "id": "2e5945c0-95c8-45f1-9878-d983b7227cd0",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "Ceci es notre base de connaissance dynamique\n\nLe but est de lui donner du contexte sur l'agence de Bali et qui va pouvoir se baser  sur les documents de l'agence, factures etc... surtout comment nous voulons qu'il se comporte.\n\nUn dossier a été créer sur google drive contenant un fichier et à chaque fois qu'un new file est uploadé dans ce dossier le déclencheur le téléchargera directement",
+        "height": 96,
+        "width": 150
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        784,
+        1392
+      ],
+      "typeVersion": 1,
+      "id": "24afd0b8-0f83-4b63-8593-5adf8c0e34b9",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "ID_DE_VOTRE_GOOGLE_SHEET",
+          "mode": "id"
+        },
+        "event": "fileCreated",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        592,
+        1232
+      ],
+      "id": "b9b29287-af02-4a22-a234-b2c45a098c7d",
+      "name": "Déclencheur Drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "gnQKUnbnr7sw4ueI",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        816,
+        1232
+      ],
+      "id": "9390f7c6-587e-47c8-9d9d-762b5f37724b",
+      "name": "Base de connaissance",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "gnQKUnbnr7sw4ueI",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "Celui permet d'ajouter le ou les fichiers uplodés dans notre base de connaissances.\n\nDonner des compétences à notre agent ia de venir voir dans notre base de connaissance.\n\nPour que notre bd puisse vraiment uploder et télécharger ce document on l'ajoute un outil \" Default Data Loader \"",
+        "height": 96
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1056,
+        1232
+      ],
+      "typeVersion": 1,
+      "id": "083e0517-8f0e-48c4-ad06-03878395157b",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "memoryKey": {
+          "__rl": true,
+          "value": "vector_store_key",
+          "mode": "list",
+          "cachedResultName": "vector_store_key"
+        },
+        "embeddingBatchSize": 400
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.3,
+      "position": [
+        1040,
+        1232
+      ],
+      "id": "ad4c366c-63b8-4881-a72a-1134b1cafd1c",
+      "name": "Base de données"
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        1216,
+        1376
+      ],
+      "id": "06213db7-0bb7-42c1-bc5f-c3b9149632e4",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "content": "Il permet de traiter simple l'ia générative quand on lui met des documents pour ne pas depasser sa fénêtre de contexte",
+        "height": 112,
+        "width": 150
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1200,
+        1344
+      ],
+      "typeVersion": 1,
+      "id": "876dbb9b-b236-43ab-b6ae-856f1b6b1afc",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "Ici on connecte notre agent ia à la Base de données:\n\n",
+        "height": 96
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1440,
+        144
+      ],
+      "typeVersion": 1,
+      "id": "1b727d6f-9c92-4dd1-ad18-2d3f4e54e913",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "content": "Google searche:\n\nEst un module de météo qui va  nous permettre de récuperer la météo afin que notre agent reconnait la météo pour mieux satisfaire les besoins clients en plus permettre à notre agent ia de faire la recherche en ligne",
+        "height": 80,
+        "width": 150
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1488,
+        352
+      ],
+      "typeVersion": 1,
+      "id": "0789da42-133e-4b0e-845f-cabb344a1a80",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "additionalFields": {},
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-serpapi.serpApiTool",
+      "typeVersion": 1,
+      "position": [
+        1136,
+        288
+      ],
+      "id": "a2e18d94-bbb9-48c8-be6b-59da4c7ddf0e",
+      "name": "Google search in SerpApi",
+      "credentials": {
+        "serpApi": {
+          "id": "fYF1XPvpfNdYxy0f",
+          "name": "SerpApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "Base de connaissance officielle de l'agence d'activités à Bali : activités, prix, durées, ce qui est inclus, réductions, réservation, paiement, politique d'annulation, FAQ et contacts. À utiliser avant toute réponse sur les activités, les tarifs ou les conditions.",
+        "memoryKey": {
+          "__rl": true,
+          "mode": "list",
+          "value": "vector_store_key"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "typeVersion": 1.3,
+      "position": [
+        1440,
+        224
+      ],
+      "id": "33c3753b-9962-429a-9c66-f625d94b54fb",
+      "name": "Base de données1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        320,
+        288
+      ],
+      "id": "90fb83e6-6b46-419d-8a4d-64c7d5d3263d",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "zM0rYPRK3Eyd3647",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1024,
+        1392
+      ],
+      "id": "fa907aa8-6c2b-4718-b1e6-9ee75822db5a",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "0CATPc18qG5GOqv2",
+          "name": "OpenAI account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "Notre google sheet: Il est connecté à un fichier google sheet dans lequel les infos du client seront stockés et ce fichier nous pourrons le téléchargé",
+        "height": 96,
+        "width": 150
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        720,
+        464
+      ],
+      "typeVersion": 1,
+      "id": "f582cbf1-bae2-40a2-9d3c-05086106cfac",
+      "name": "Sticky Note10"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Utilise cet outil pour sauvegarder les informations client. Paramètres requis name (nom complet), email (adresse email), phone(numéro de téléphone), activity (activité souhaitée). Exemple d'utilisation: name: \"Jean Dupon\", email=\"jean@email.com\", phone=\"00000000\", activity=\"Tour volcan\"",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "ID_DE_VOTRE_GOOGLE_SHEET",
+          "mode": "list",
+          "cachedResultName": "ID_DE_VOTRE_GOOGLE_SHEET",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/ID_DE_VOTRE_GOOGLE_SHEET/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Feuille 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/ID_DE_VOTRE_GOOGLE_SHEET/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nom": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Nom', ``, 'string') }}",
+            "Email": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Email', ``, 'string') }}",
+            "Téléphone": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('T_l_phone', ``, 'string') }}",
+            "Activité_souhaitée": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Activit__souhait_e', ``, 'string') }}",
+            "Date_activité": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Date_activit_', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Nom",
+              "displayName": "Nom",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Téléphone",
+              "displayName": "Téléphone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Activité_souhaitée",
+              "displayName": "Activité_souhaitée",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Date_activité",
+              "displayName": "Date_activité",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        768,
+        288
+      ],
+      "id": "8cc1f2ee-b8f9-4387-97ab-fc3c223d20a1",
+      "name": "Fichier google sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "R6Ran9QYOrD7HjIk",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1440,
+        352
+      ],
+      "id": "4212910a-b423-47cc-a25b-d02b940f7c39",
+      "name": "Embeddings OpenAI1",
+      "credentials": {
+        "openAiApi": {
+          "id": "zM0rYPRK3Eyd3647",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "Cet outil va permettre de reserver la date et des créneaux dans notre agenda en plus invité le client à cette date ",
+        "height": 96,
+        "width": 160
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        912,
+        464
+      ],
+      "typeVersion": 1,
+      "id": "7715c4a4-9716-402b-bb5e-44a5f1366f83",
+      "name": "Sticky Note11"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Utilise cet outil pour ajouter la réservation du client dans l'agenda",
+        "calendar": {
+          "__rl": true,
+          "value": " ID_DE_VOTRE_AGENDA@group.calendar.google.com	",
+          "mode": "list",
+          "cachedResultName": "Agence Bali"
+        },
+        "start": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start', ``, 'string') }}",
+        "end": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End', ``, 'string') }}",
+        "additionalFields": {
+          "attendees": [
+            "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('attendees0_Attendees', ``, 'string') }}"
+          ],
+          "description": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Description', ``, 'string') }}",
+          "summary": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Summary', ``, 'string') }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        960,
+        304
+      ],
+      "id": "b47e977d-53ec-4991-875a-6d3bb61e3903",
+      "name": "Create an event in Google Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "COVcGTNwnqzw3ELT",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "Ici, nous demandons à notre agent ia d'envoyer un email de confirmation au client",
+        "height": 96,
+        "width": 150
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1248,
+        144
+      ],
+      "typeVersion": 1,
+      "id": "986a90b9-3298-4de1-8231-08fc2b9dd1e6",
+      "name": "Sticky Note12"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Envoie un email de confirmation récapitulatif à l'utilisateur avec toutes les informations de l'activité qu'il a réservé.\n",
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "Confirmation de réservation",
+        "emailType": "text",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', `Rédige un email qui récapitule toutes les informations nécessaire sur l'activité reservé ainsi que l'agence afin que l'utilisateur dispose de tout ce qu'il lui faut\n`, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        1296,
+        240
+      ],
+      "id": "2babdfaa-f191-4ea3-a0eb-9b318fded07c",
+      "name": "Send a message in Gmail",
+      "webhookId": "d338d350-00b3-49fc-b6c4-c806ad4adede",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "PIM2bVpCOArWPRM9",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "Ici \" Slack \" c'est notre messagerie conversationnelle en entreprise comme Discord et Teams, et son rôle est d'avertir (notifier) avec l'agent concerné qu'il y ' a eu une réservation",
+        "height": 80,
+        "width": 150
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1232,
+        416
+      ],
+      "typeVersion": 1,
+      "id": "bc164927-1fa9-46f4-9188-a04d57f6fa3a",
+      "name": "Sticky Note13"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Envoie un message à l'équipe de l'agence pour prévenir qu'une réservation a été faites et communiquer toutes les informations nécessaire.",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "ID_DU_CANAL_SLACK",
+          "mode": "id"
+        },
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_Text', ``, 'string') }}",
+        "otherOptions": {}
+      },
+      "type": "n8n-nodes-base.slackTool",
+      "typeVersion": 2.7,
+      "position": [
+        1152,
+        416
+      ],
+      "id": "89471c2a-e2f9-4a6d-a8a2-fa9c10cc3603",
+      "name": "Send a message in Slack",
+      "webhookId": "7230b27a-fe6a-40ef-8dc5-b5c6edc70ab6"
+    },
+    {
+      "parameters": {
+        "content": "WhatsApp"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        272,
+        -192
+      ],
+      "typeVersion": 1,
+      "id": "77947fda-4c48-43a8-b59f-a95e50f72f5a",
+      "name": "Sticky Note14"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "account_review_update"
+        ],
+        "options": {}
+      },
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        272,
+        -144
+      ],
+      "id": "49ff8749-3631-4861-9a99-e85077830879",
+      "name": "WhatsApp Trigger",
+      "webhookId": "2d7a4bd3-1df6-4077-9ec3-981afa023dc1"
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1.1,
+      "position": [
+        1216,
+        -16
+      ],
+      "id": "e2ddfa8a-c4e2-4643-a8dd-fed5a37db23d",
+      "name": "Send message",
+      "webhookId": "1994e223-049b-458c-878c-64e3c2a7aeeb"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Mémoire de sauvegarde(Permettant à l'ia de bien interragir)": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Déclencheur Drive": {
+      "main": [
+        [
+          {
+            "node": "Base de connaissance",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Base de connaissance": {
+      "main": [
+        [
+          {
+            "node": "Base de données",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Base de données",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google search in SerpApi": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Base de données1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Base de données",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fichier google sheet": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Base de données1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create an event in Google Calendar": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message in Slack": {
+      "ai_tool": [
+        []
+      ]
+    },
+    "WhatsApp Trigger": {
+      "main": [
+        []
+      ]
+    },
+    "Déclencheur chat": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "timezone": "Europe/Paris",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "598e6c19-59f7-4432-92d7-e6c7affcf225",
+  "meta": {
+    "instanceId": "INSTANCE_ID"
+  },
+  "nodeGroups": [],
+  "id": "S4k03JAvFglOT7L1",
+  "tags": []
+}
